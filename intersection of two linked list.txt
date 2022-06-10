@@ -1,0 +1,57 @@
+import java.util.* ;
+import java.io.*; 
+/************************************
+	 
+	 //Following is the class structure of the LinkedListNode class:
+	 
+	  class LinkedListNode<T> {
+		public T data;
+		public LinkedListNode<T> next;
+		
+		public LinkedListNode(T data) {
+			this.data = data;
+			this.next = null;
+		}
+	}
+
+*****************************************/
+public class Solution {
+
+	public static int findIntersection(LinkedListNode<Integer> firstHead, LinkedListNode<Integer> secondHead) {
+		LinkedListNode<Integer> d1=firstHead;
+        LinkedListNode<Integer> d2=secondHead;
+        int i=0;
+        int j=0;
+        while(d1!=null){
+            d1=d1.next;
+            i++;
+        }
+        while(d2!=null){
+            d2=d2.next;
+            j++;
+        }
+        int k;
+        d1=firstHead;
+        d2=secondHead;
+        if(j>i){
+          k=j-i;
+            for(int l=0;l<k;l++){
+                d2=d2.next;
+            }
+        }
+        else{
+            k=i-j;
+            for(int h=0;h<k;h++){
+                d1=d1.next;
+            }
+        }
+        while(d1!=d2 && d1.next!=null){
+            d1=d1.next;
+            d2=d2.next;
+        }
+        if(d1!=d2)
+            return -1;
+        k=d1.data;
+        return k;
+	}
+}
