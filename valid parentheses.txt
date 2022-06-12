@@ -1,0 +1,21 @@
+import java.util.*;
+public class Solution {
+    public static boolean isValidParenthesis(String expression) {
+       Stack<Character> stack=new Stack<>();
+       for(int i=0;i<expression.length();i++){
+           if(expression.charAt(i)=='[' || expression.charAt(i)=='(' || expression.charAt(i)=='{')
+               stack.push(expression.charAt(i));
+          else {
+                if(stack.isEmpty()) return false;
+                char ch = stack.pop(); 
+                char it=expression.charAt(i);
+                if((it == ')' && ch == '(') ||  (it == ']' && ch == '[') || (it == '}' && ch == '{')) continue;
+                else return false;
+            }
+       } 
+        if(stack.isEmpty())
+            return true;
+        else 
+            return false;
+    }
+}
