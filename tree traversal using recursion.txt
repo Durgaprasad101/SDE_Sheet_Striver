@@ -1,0 +1,57 @@
+import java.util.*;
+/************************************************************
+
+	Following is the Binary Tree node structure:
+
+	class BinaryTreeNode<T> {
+	    T data;
+	    BinaryTreeNode<T> left;
+	    BinaryTreeNode<T> right;
+
+	    public BinaryTreeNode(T data) {
+	        this.data = data;
+	    }
+	}
+
+************************************************************/
+
+public class Solution {
+    public static List<List<Integer>> getTreeTraversal(BinaryTreeNode<Integer> root) {
+        List<List<Integer>> ls=new ArrayList<>();
+        List<Integer> in=new ArrayList<>();
+        List<Integer> pre=new ArrayList<>();
+        List<Integer> pos=new ArrayList<>();
+        if(root==null)
+            return ls;
+        recur1(root,in);
+        recur2(root,pre);
+        recur3(root,pos);
+        ls.add(in);
+        ls.add(pre);
+        ls.add(pos);
+        return ls;
+    }
+    public static void recur1(BinaryTreeNode<Integer> root,List<Integer> ls){
+        
+        if(root==null){
+            return;
+        }
+        recur1(root.left,ls);
+        ls.add(root.data);
+        recur1(root.right,ls);
+    }
+    public static void recur2(BinaryTreeNode<Integer> root,List<Integer> ls){
+        if(root==null)
+            return;
+        ls.add(root.data);
+        recur2(root.left,ls);
+        recur2(root.right,ls);
+    }
+    public static void recur3(BinaryTreeNode<Integer> root,List<Integer> ls){
+        if(root==null)
+            return ;
+        recur3(root.left,ls);
+        recur3(root.right,ls);
+        ls.add(root.data);
+    }
+}
