@@ -1,0 +1,24 @@
+import java.util.*;
+public class Solution {
+	public static void sortStack(Stack<Integer> stack) {
+        
+         recur(stack);
+	}
+    public static void recur(Stack<Integer> stack){
+        if(stack.isEmpty())
+            return;
+        int temp=stack.pop();
+        recur(stack);
+        sorted(stack,temp);
+    }
+    public static void sorted(Stack<Integer> st,int x){
+        if(st.isEmpty() || x>st.peek()){
+            st.push(x);
+        return ;
+        }
+        int temp=st.pop();
+        sorted(st,x);
+        st.push(temp);
+    }
+
+}
