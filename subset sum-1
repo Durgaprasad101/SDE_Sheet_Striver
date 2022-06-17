@@ -1,0 +1,23 @@
+import java.util.*;
+public class Solution {
+    public static void fun(int id,int num[],ArrayList<Integer> ls,int sum,ArrayList<Integer>ds){
+        if(id>=num.length){
+            ls.add(sum);
+            return ;
+        }
+        ds.add(num[id]);
+        sum+=num[id];
+        fun(id+1,num,ls,sum,ds);
+         ds.remove(ds.size()-1);
+        sum-=num[id];
+        fun(id+1,num,ls,sum,ds);
+    }
+    public static ArrayList<Integer> subsetSum(int num[]) {
+        ArrayList<Integer> ls=new ArrayList<>();
+        ArrayList<Integer>ds=new ArrayList<>();
+        fun(0,num,ls,0,ds);
+        Collections.sort(ls);
+        return ls;
+    }
+
+}
